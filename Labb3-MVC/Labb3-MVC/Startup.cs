@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Labb3MVC.Models;
 
 namespace Labb3_MVC
 {
@@ -22,6 +24,9 @@ namespace Labb3_MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddDbContext<Labb3MVCContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Labb3MVCContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
