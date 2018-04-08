@@ -20,6 +20,9 @@ namespace Labb3MVC.Models
         [DisplayName("Time")]
         public string ShowTime { get; set; }
 
+        [DisplayName("Salong")]
+        public Salong Salong { get; set; }
+
         [NotMapped]
         [DisplayName("Biljetter 1-12")]
         [Range(1,12,ErrorMessage ="Du kan max boka 12 biljetter")]
