@@ -1,13 +1,12 @@
 ﻿@model Labb3MVC.Models.Filmer
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "BiljettBekräftelse";
 }
 
-<h2>Details</h2>
+<h2>Detaljer om ditt köp</h2>
 
 <div>
-    <h4>Filmer</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -17,10 +16,10 @@
             @Html.DisplayFor(model => model.Namn)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Biljetter)
+            Köpta @Html.DisplayNameFor(model => model.Biljetter)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Biljetter)
+            @Html.DisplayFor(model => model.BiljettValidator)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ShowTime)
@@ -28,9 +27,14 @@
         <dd>
             @Html.DisplayFor(model => model.ShowTime)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model=>model.Salong)
+        </dt>
+        <dd>
+            nummer @Html.DisplayFor(model=>model.Salong.Id)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

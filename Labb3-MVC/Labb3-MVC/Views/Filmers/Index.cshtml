@@ -1,27 +1,26 @@
 ﻿@model IEnumerable<Labb3MVC.Models.Filmer>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Filmer";
 }
 
-<h2>Index</h2>
+<h2>Filmer</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Namn)
+                    <a asp-action="Index" asp-route-SortOrder="@ViewData["NamnSortParam"]">@Html.DisplayNameFor(model => model.Namn)</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Biljetter)
+                    <a asp-action="Index" asp-route-SortOrder="@ViewData["BiljettSortParam"]"> @Html.DisplayNameFor(model => model.Biljetter)</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ShowTime)
+                    <a asp-action="Index" asp-route-SortOrder="@ViewData["ShowTimeSortParam"]">@Html.DisplayNameFor(model => model.ShowTime)</a>
                 </th>
-            <th></th>
+            <th>
+                <a asp-action="Index" asp-route-SortOrder="@ViewData["SalongSortParam"]">@Html.DisplayNameFor(model=>model.Salong)</a>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -31,15 +30,24 @@
                 @Html.DisplayFor(modelItem => item.Namn)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Biljetter)
+                @Html.DisplayFor(modelItem => item.Biljetter) / @Html.DisplayFor(modelItem=>item.Salong.MaxKapacitet)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ShowTime)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                Salong nummer @Html.DisplayFor(modelItem=>item.Salong.Id)
+            </td>
+            <td>
+                @if (item.Biljetter <= 0)
+                {
+                    <input type="submit" value="Utsåld" disabled />
+                }
+                else
+                {
+                    <a asp-action="Köp" asp-route-id="@item.Id" class="btn btn-success">Köp</a>
+
+                }
             </td>
         </tr>
 }

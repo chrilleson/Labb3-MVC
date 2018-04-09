@@ -1,0 +1,74 @@
+﻿@model Labb3MVC.Models.Filmer
+
+@{
+    ViewData["Title"] = "Köp";
+}
+
+<h2>Köp Biljetter</h2>
+
+<h4>Filmer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Köp" method="post">
+            <input type="hidden" asp-for="Id" />
+            <dl class=" dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model=>model.Namn)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model=>model.Namn)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model=>model.ShowTime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model=>model.ShowTime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model=>model.Salong)
+                </dt>
+                <dd>
+                    nummer @Html.DisplayFor(model=> model.Salong.Id)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model=>model.Biljetter) kvar
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model=>model.Biljetter)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model=>model.BiljettValidator)
+                </dt>
+                <dd>
+                    <input asp-for="BiljettValidator" type="text" />
+                    @Html.ValidationSummary("", new { @class = "text-danger"})
+                </dd>
+            </dl>
+            @{ 
+                if(Model.Biljetter <= 0 || Model.BiljettValidator > Model.Biljetter)
+                {
+                    <div class=" form-group">
+                        <input type="submit" value="Utsåld" class="btn btn-danger" disabled />
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <input type="submit" value="Köp" class="btn btn-success" />
+                    </div>
+                }
+            }
+            
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary btn-lg">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

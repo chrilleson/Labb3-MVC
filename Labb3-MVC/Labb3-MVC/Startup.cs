@@ -49,7 +49,7 @@ namespace Labb3_MVC
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Filmer}/{action=Home}/{id?}");
+                    template: "{controller=Filmers}/{action=Index}/{id?}");
             });
         }
     }
