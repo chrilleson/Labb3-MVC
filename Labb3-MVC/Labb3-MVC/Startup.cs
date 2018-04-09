@@ -24,9 +24,10 @@ namespace Labb3_MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
+            string cs = Configuration.GetConnectionString("Labb3MVCContext");
             services.AddDbContext<Labb3MVCContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Labb3MVCContext")));
+                options.UseSqlServer(cs));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
