@@ -19,13 +19,6 @@ namespace Labb3MVC.Controllers
             _context = context;
         }
 
-        public IActionResult Home()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
         // GET: Filmers
         public async Task<IActionResult> Index(string SortOrder)
         {
